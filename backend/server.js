@@ -1,17 +1,22 @@
 const express = require('express');
+const express = require('express');
 const cors = require('cors');
 
-const app = express();
-const PORT = 5000;
+const drugRoutes = require('./routes/drugs');
 
-app.use(cors());
-app.use(express.json())
+const app = express();
+
+const PORT = 5001;
+
+app.use(cors());            
+app.use(express.json());    
 
 app.get('/', (req, res) => {
-  res.json({message: 'MedInfo API is running!'});
+    res.json({ message: 'MedInfo API is running!' });
 });
 
+app.use('/api/drugs', drugRoutes);
 
 app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+    console.log(`Server running on http://localhost:${PORT}`);
 });
