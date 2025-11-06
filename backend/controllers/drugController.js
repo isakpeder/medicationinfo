@@ -24,10 +24,10 @@ async function searchDrugs(req, res) {
 }
 
 async function getRecalls(req, res) {
-    const { query } = req.query;
+    const { drugName } = req.params;
 
-    if (!query || query.trim().length < 2) {
-        return res.status(400).json({ error: 'Query must be at least 2 characters' });
+    if (!drugName || drugName.trim().length < 2) {
+        return res.status(400).json({ error: 'Drug name must be at least 2 characters' });
     }
 
     try {
@@ -41,8 +41,10 @@ async function getRecalls(req, res) {
     }
 
     catch (error){
-        console.error('Search error: ' + error);
+        console.error('Recalls error: ' + error);
         res.status(500).json({ error: 'Failed to search recalls' });
     }
+
+    module.exports = {searchDrugs, getRecalls}
 
 }
