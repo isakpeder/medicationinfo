@@ -31,7 +31,7 @@ async function getRecalls(req, res) {
     }
 
     try {
-        const recalls = await getDrugRecalls(query);
+        const recalls = await getDrugRecalls(drugName);
 
         if (!recalls || recalls.length == 0) {
             return res.status(404).json({ message: 'No recalls found' });
@@ -45,6 +45,7 @@ async function getRecalls(req, res) {
         res.status(500).json({ error: 'Failed to search recalls' });
     }
 
-    module.exports = {searchDrugs, getRecalls}
-
 }
+
+module.exports = {searchDrugs, getRecalls}
+
