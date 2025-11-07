@@ -11,6 +11,7 @@ function App() {
   const searchHandler = async () => {
     if (!searchQuery.trim() || searchQuery.trim().length < 2) {
       setError('Plese enter at least 2 characters');
+      setDrugData(null);
       return;
     }
     setLoading(true);
