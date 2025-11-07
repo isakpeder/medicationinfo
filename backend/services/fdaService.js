@@ -10,7 +10,7 @@ async function searchDrug(drugName) {
         const response = await fdaAPI.get('/drug/label.json', {
             params: {
                 search: `openfda.brand_name:"${drugName}"+openfda.generic_name:"${drugName}"`,
-                limit: 3  
+                limit: 1 
             }
         });
 
@@ -26,6 +26,7 @@ async function searchDrug(drugName) {
             warnings: drug.warnings?.[0] || 'Not available',
             sideEffects: drug.adverse_reactions?.[0] || 'Not available',
             dosage: drug.dosage_and_administration?.[0] || 'Not available',
+            activeIngredient: drug.active_ingredient?.[0] || 'Not available',
             contraindications: drug.contraindications?.[0] || 'Not available'
         }));
 
